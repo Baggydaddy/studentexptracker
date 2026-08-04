@@ -1,0 +1,161 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --bg: #0f172a;
+  --bg-light: #f8fafc;
+  --border: #1e293b;
+  --text: #e5e7eb;
+  --text-dark: #020617;
+  --accent-start: #2563eb;
+  --accent-end: #60a5fa;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --border: #e5e7eb;
+  --text: #020617;
+}
+
+/* ================= NAVBAR ================= */
+.navbar-container {
+  /* translucent navbar so the global gradient shows through */
+  background: rgba(15, 23, 42, 0.24);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.75rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Inter", system-ui, sans-serif;
+}
+/* Light theme override for translucent navbar */
+[data-theme="light"] .navbar-container {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* ================= LINKS ================= */
+.navbar-links {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.navbar-links button {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  padding: 0.55rem 1.3rem;
+  border-radius: 0.7rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* ===== GRADIENT WATER FILL ===== */
+.navbar-links button::before {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: 0;
+  width: 100%;
+  height: 140%;
+  background: linear-gradient(135deg, #3f5efb, #7f00ff);
+  transform: translateY(100%) skewY(-6deg);
+  transition: transform 0.9s ease;
+  z-index: 0;
+}
+
+/* ===== WAVE LAYER ===== */
+.navbar-links button::after {
+  content: "";
+  position: absolute;
+  bottom: 65%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.35) 10%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* Hover */
+.navbar-links button:hover {
+  transform: scale(1.05);
+}
+
+.navbar-links button:hover::before,
+.navbar-links button.active::before {
+  transform: translateY(0) skewY(-6deg);
+}
+
+.navbar-links button:hover::after,
+.navbar-links button.active::after {
+  opacity: 1;
+}
+
+/* Text above water */
+.navbar-links button span {
+  position: relative;
+  z-index: 2;
+}
+
+/* Click */
+.navbar-links button:active {
+  transform: scale(1.08);
+}
+
+/* ========== RIGHT SIDE (avatar + address) ========== */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.navbar-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.06);
+}
+
+.avatar-placeholder {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.wallet-address {
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.navbar-logout-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  border: none;
+  border-radius: 0.7rem;
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navbar-logout-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.25);
+}
